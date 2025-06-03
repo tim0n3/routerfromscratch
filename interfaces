@@ -1,0 +1,14 @@
+# /etc/network/interfaces  — Debian 12
+
+auto lo
+iface lo inet loopback
+
+# ---------- WAN ----------
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+# ---------- LAN ----------
+allow-hotplug eth1
+iface eth1 inet static
+    address 192.168.50.254
+    netmask 255.255.255.0
