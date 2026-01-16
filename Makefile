@@ -15,10 +15,16 @@ fmt:
 	else echo "No shell files to format."; fi
 
 lint:
-	@if [ -n "$(SH_FILES)" ]; then \
-		if command -v shellcheck >/dev/null 2>&1; then shellcheck $(SH_FILES); \
-		else echo "shellcheck not installed"; exit 1; fi; \
-	else echo "No shell files to lint."; fi
+	@if [ -z "$(SH_FILES)" ]; then \
+		echo "No shell files to lint."; \
+	elif command -v pre-commit >/dev/null 2>&1; then \
+		pre-commit run shellcheck --all-files; \
+	elif command -v shellcheck >/dev/null 2>&1; then \
+		shellcheck $(SH_FILES); \
+	else \
+		echo "shellcheck not installed"; \
+		exit 1; \
+	fi
 
 test:
 	@echo "No tests defined."

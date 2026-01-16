@@ -23,8 +23,5 @@ jobs:
       - name: Pre-commit
         uses: pre-commit/action@v3.0.1
 
-      - name: Install shellcheck
-        run: sudo apt-get update && sudo apt-get install -y shellcheck
-
       - name: Run make ci
         run: make ci

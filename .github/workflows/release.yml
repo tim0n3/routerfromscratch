@@ -20,6 +20,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Verify staging ancestor
+        run: |
+          git fetch origin staging
+          if git merge-base --is-ancestor origin/staging HEAD; then
+            echo "staging is ancestor of main; proceeding."
+          else
+            echo "Refusing release: HEAD is not descended from origin/staging."
+            exit 1
+          fi
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
