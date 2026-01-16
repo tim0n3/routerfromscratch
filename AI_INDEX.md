@@ -24,7 +24,7 @@ Branch model and merge policy:
 CI/CD contract:
 - CI runs on PRs and on pushes to dev/staging/main.
 - CI runs pre-commit and make ci.
-- Security workflow runs gitleaks and semgrep; trivy and syft only when Docker files exist.
+- Security workflow is currently disabled; use `make scan` or pre-commit hooks for gitleaks/semgrep.
 - Release workflow runs after staging -> main merges and uses conventional commits to update CHANGELOG.md
   and GitHub release notes with strict semver tags (no prefix unless repo already uses it).
 - Auto-detection for this repo: shell scripts and system config files; no build/test toolchain detected.
