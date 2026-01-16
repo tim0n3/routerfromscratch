@@ -2,7 +2,7 @@
 
 # Router Maintenance Guide
 
-Keep the lab router secure, updated and reliable with the tasks below.  
+Keep the lab router secure, updated and reliable with the tasks below.
 All cron/automation suggestions assume local **root** privileges.
 
 ---
@@ -19,7 +19,7 @@ All cron/automation suggestions assume local **root** privileges.
 
 ## 2 - Weekly
 
-I. **Manual `apt full-upgrade`**  
+I. **Manual `apt full-upgrade`**
    ```
    sudo apt update && sudo apt full-upgrade
    sudo reboot   # kernel/libc bumps
@@ -66,7 +66,7 @@ III. **Fail2ban review**
 
 ## 5 - Resource Tuning
 
-| Knob                  | When to Change                   | Example                         
+| Knob                  | When to Change                   | Example
 | --------------------- | -------------------------------- | -------------------------------- |
 | `nf_conntrack_max`    | > 80 % utilisation               | `cat 32768 >> /proc/sys/net/netfilter/nf_conntrack_max` |
 | `SYN_FLOOD` limits    | Frequent false-positives in logs | Increase `--limit` or `--burst`. |
