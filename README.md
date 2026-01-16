@@ -1,18 +1,18 @@
 # Two-NIC Debian 12 Router & Firewall
 
-A lightweight virtual router/firewall for small labs, built with **iptables** and **ISC-DHCP-Server** on Debian 12 “bookworm”.  
+A lightweight virtual router/firewall for small labs, built with **iptables** and **ISC-DHCP-Server** on Debian 12 “bookworm”.
 It routes between a DHCP-fed **WAN** (`eth0`) and a static-IP **LAN** (`eth1`, `192.168.50.0/24`).
 
 ---
 
 ## 1 - Features
 
-* **IPv4 routing & NAT** (MASQUERADE)  
-* **Stateful firewall** with sensible defaults  
-* **Basic hardening** – SYN-cookies, rp-filter, …  
-* **Rate-limited SSH exposure** on both WAN & LAN  
-* **Port-forward:** `WAN:2222 → 192.168.50.254:22`  
-* **DHCP server** (12 h leases, 192.168.50.1-243)  
+* **IPv4 routing & NAT** (MASQUERADE)
+* **Stateful firewall** with sensible defaults
+* **Basic hardening** – SYN-cookies, rp-filter, …
+* **Rate-limited SSH exposure** on both WAN & LAN
+* **Port-forward:** `WAN:2222 → 192.168.50.254:22`
+* **DHCP server** (12 h leases, 192.168.50.1-243)
 * **Optional extras** – fail2ban, unattended-upgrades
 
 ---

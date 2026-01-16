@@ -7,13 +7,13 @@ repos:
       - id: check-yaml
       - id: check-json
       - id: detect-private-key
-  - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.10.0
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.6
     hooks:
       - id: shellcheck
         files: "\\.sh$"
-  - repo: https://github.com/pre-commit/mirrors-shfmt
-    rev: v3.8.0
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.9.0-1
     hooks:
       - id: shfmt
         args: ["-w", "-s"]
