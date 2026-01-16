@@ -1,0 +1,51 @@
+name: security
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 1"
+  pull_request:
+  push:
+    branches:
+      - dev
+      - staging
+      - main
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          fail: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install semgrep
+        run: python -m pip install --upgrade pip semgrep
+
+      - name: Semgrep (high confidence)
+        run: semgrep --config auto --error --severity ERROR --confidence HIGH
+
+      - name: Trivy filesystem scan
+        if: ${{ hashFiles('Dockerfile', 'Dockerfile.*', 'docker-compose*.yml', 'docker-compose*.yaml') != '' }}
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          scan-type: fs
+          severity: HIGH,CRITICAL
+          exit-code: 1
+          ignore-unfixed: true
+
+      - name: Syft SBOM
+        if: ${{ hashFiles('Dockerfile', 'Dockerfile.*', 'docker-compose*.yml', 'docker-compose*.yaml') != '' }}
+        uses: anchore/syft-action@v0.15.0
+        with:
+          format: spdx-json
+          output-file: sbom.spdx.json

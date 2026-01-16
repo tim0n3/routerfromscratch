@@ -1,0 +1,28 @@
+name: Chore
+description: Maintenance, cleanup, or process work
+title: "chore: "
+labels: ["type/chore", "status/triage"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What needs to be done?
+      placeholder: Clear description of the work.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Any constraints or boundaries?
+      placeholder: In-scope / out-of-scope details.
+    validations:
+      required: false
+  - type: textarea
+    id: done
+    attributes:
+      label: Definition of done
+      placeholder: How will we know this is complete?
+    validations:
+      required: false
