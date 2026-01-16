@@ -10,7 +10,7 @@ LAN_GW="192.168.50.254"
 
 # Port-forward: WAN :2222 → 192.168.50.254:22
 DNAT_WAN_PORT=2222
-DNAT_LAN_IP="192.168.50.254"
+DNAT_LAN_IP="${LAN_GW}"
 DNAT_LAN_PORT=22
 
 # ---------- flush & baseline policies ----------
